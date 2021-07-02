@@ -117,3 +117,23 @@ dmypy.json
 merged.csv
 twitter_aapl_1.json
 twitter_aapl_1_clean.csv
+
+# Old files not currently in use
+aal.csv
+adi.csv
+cern.csv
+cost.csv
+dish.csv
+ebay.csv
+fisv.csv
+intc.csv
+jnj.csv
+mnst.csv
+msft.csv
+nflx.csv
+qcom.csv
+rtx.csv
+siri.csv
+tsla.csv
+vrtx.csv
+wdc.csv
