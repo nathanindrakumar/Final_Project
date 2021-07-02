@@ -112,3 +112,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Files too big to upload to Github
+merged.csv
+twitter_aapl_1.json
+twitter_aapl_1_clean.csv
