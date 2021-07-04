@@ -137,3 +137,7 @@ siri.csv
 tsla.csv
 vrtx.csv
 wdc.csv
+
+# Files with sensitive Twitter information
+Preprocessing2_Tweepy.ipynb
+Project_Preprocessing.ipynb
