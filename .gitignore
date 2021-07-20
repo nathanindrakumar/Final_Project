@@ -117,6 +117,7 @@ dmypy.json
 merged.csv
 twitter_aapl_1.json
 twitter_aapl_1_clean.csv
+twitter_aapl_new.json
 
 # Old files not currently in use
 aal.csv
