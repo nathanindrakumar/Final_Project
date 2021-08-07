@@ -1,0 +1,71 @@
+
+
+# all_tweets = merged[['text','lang']]
+# all_tweetst = all_tweets['text'].to_list()
+langlist = merged['lang'].unique()
+rmselist = []
+for lang in langlist:
+
+
+    y = merged[['Change','usedate']].loc[merged['lang'] == lang]
+    index = merged.index[merged['lang'] == lang].tolist()
+    X = processed_tweets[index]
+    from sklearn.model_selection import train_test_split  
+    x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    y_traindates = y_train['usedate']
+    y_testdates = y_test['usedate']
+    y_train = y_train['Change']
+    y_test = y_test['Change']
+    y_train = y_train.values.reshape(-1,1)
+    y_test = y_test.values.reshape(-1,1)
+    y_train = y_train.astype(np.float32)
+    y_test = y_test.astype(np.float32)
+    
+    tfidf = TfidfVectorizer(tokenizer=identity_tokenizer, input="array", lowercase=False, norm="l2", max_features=None, sublinear_tf=True,token_pattern=r'[^\s]+')
+    x_train2 = tfidf.fit_transform(x_train)
+    x_test2 = tfidf.fit_transform(x_test)
+    x_trainshape = x_train2.shape[1]
+
+    optimum_params = {'net__lr': 0.0015539382932245303, 'net__max_epochs': 20, 'net__optimizer__momentum': 0.9375124227337543}
+
+    in_dimensionopt = x_trainshape
+    hid_dimensionopt = 160
+    out_dimensionopt = 1
+
+        class PoleNN_opt(nn.Module):
+            def __init__(self):
+                super(PoleNN_opt, self).__init__()
+                self.fc1 = nn.Linear(in_dimensionopt,hid_dimensionopt)
+                self.fc2 = nn.Linear(hid_dimensionopt,out_dimensionopt)
+                self.ReLU = torch.nn.ReLU()
+
+            def forward(self, X):
+                hidden = self.fc1(X)
+                hidden = self.ReLU(hidden)
+                output = self.fc2(hidden)
+                return output
+
+    pole_model = PoleNN_opt()
+
+    net = NeuralNetRegressor(module=pole_model, max_epochs=optimum_params['net__max_epochs'], lr=optimum_params['net__lr'], optimizer__momentum=optimum_params['net__optimizer__momentum'], callbacks =[('earlystopping',EarlyStopping())])
+    def typechange(x):
+        return x.astype(dtype = np.float32)
+    typetransform = FunctionTransformer(typechange)
+    def inputneuron(x):
+        x_trainshape = x.shape[1]
+    #     return x_trainshape
+    inputneuronnumber = FunctionTransformer(inputneuron)
+    # pipe = Pipeline([('transform', DataFrameTransformer()),('net', net)])
+    # pipe = Pipeline([('net', net)])
+    pipe = Pipeline([("typetransform", typetransform), ("net", net)])
+
+
+    # net = skorch.NeuralNetClassifier(module=PoleNN, max_epochs=20, lr=0.1, criterion=torch.nn.NLLLoss)
+    pipe.fit(X=x_train, y=y_train)
+    y_pred = pipe.predict(x_test)
+    rmse = mean_squared_error(y_test, y_pred, squared = False)
+    print('RMSE:', rmse)
+    rmselist.append(rmse)
+
+min_index = rmselist.index((min(rmselist)))
+print("Optimum parameters:", langlist[min_index],":",min(rmselist))

@@ -151,3 +151,6 @@ y_train.txt
 dffinal2.csv
 dffinal3.csv
 mergedfullwithmoredates.csv
+aapl_holdout.csv
+mergedfullholdout.csv
+twitter_aapl_holdout.json
