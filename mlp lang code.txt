@@ -1,0 +1,116 @@
+merged = merged.reset_index(drop=True)
+
+
+rmselist_train = []
+rmselist_test = []
+rmselist_holdout = []
+langlist = ['en','ja','ko','es','fr']
+lists = ['Change','Change1','Change2','Change3','Change4','Change5']
+for lang in langlist:
+    
+    print(lang)
+    y = merged['Change'].loc[merged['lang'] == lang]
+    index = merged.index[merged['lang'] == lang].tolist()
+    X = pd.DataFrame(X_initial)
+    X['lang'] = merged['lang']
+    X = X[0].loc[merged['lang'] == lang]
+    X = X.to_list()
+    from sklearn.model_selection import train_test_split  
+    try:
+        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    except ValueError:
+        print("Received a value error at train-test split, will pass")
+        pass
+
+    
+    tfidf = TfidfVectorizer(tokenizer=identity_tokenizer, input="array", lowercase=False, norm="l2", max_features=None, sublinear_tf=True,token_pattern=r'[^\s]+')
+    x_train3 = tfidf.fit_transform(x_train)
+    x_test3 = tfidf.fit_transform(x_test)
+    x_trainshape = x_train3.shape[1]
+
+    optimum_params = {'net__lr': 0.0015539382932245303, 'net__max_epochs': 20, 'net__optimizer__momentum': 0.9375124227337543}
+
+    in_dimensionopt = x_trainshape
+
+    for pred in range(len(lists)):
+        print(lists[pred])
+        y_train2 = y_train.iloc[:,pred]
+        y_test2 = y_test.iloc[:,pred]
+        y_holdout2 = y_holdout.iloc[:,pred]
+
+        y_train2 = y_train2.values.reshape(-1,1)
+        y_test2 = y_test2.values.reshape(-1,1)
+        y_holdout2 = y_holdout2.values.reshape(-1,1)
+
+        y_train2 = y_train2.astype(np.float32)
+        y_test2 = y_test2.astype(np.float32)
+        y_holdout2 = y_holdout2.astype(np.float32)
+        in_dimension = 7665
+        hid_dimension = 160
+        out_dimension = 1
+
+
+        class PoleNN(nn.Module):
+            def __init__(self):
+                super(PoleNN, self).__init__()
+                self.fc1 = nn.Linear(in_dimension,hid_dimension)
+                self.fc2 = nn.Linear(hid_dimension,out_dimension)
+                self.sigmoid = torch.nn.Sigmoid()
+
+            def forward(self, X):
+                hidden = self.fc1(X)
+                hidden = self.sigmoid(hidden)
+                output = self.fc2(hidden)
+                return output
+
+        from skorch import NeuralNetRegressor
+        from sklearn.pipeline import Pipeline
+        class RegressorModule(nn.Module):
+            def __init__(
+                    self,
+                    num_units=160,
+                    nonlin=F.relu,
+            ):
+                super(RegressorModule, self).__init__()
+                self.num_units = num_units
+                self.nonlin = nonlin
+
+                self.dense0 = nn.Linear(x_trainshape, num_units)
+                self.nonlin = nonlin
+                self.dense1 = nn.Linear(num_units, 160)
+                self.output = nn.Linear(160, 1)
+
+            def forward(self, X, **kwargs):
+                X = self.nonlin(self.dense0(X))
+                X = F.relu(self.dense1(X))
+                X = self.output(X)
+                return X
+
+        pole_model = RegressorModule()
+        net = NeuralNetRegressor(module=pole_model, max_epochs=optimum_params['net__max_epochs'], lr=optimum_params['net__lr'], optimizer__momentum=optimum_params['net__optimizer__momentum'], callbacks =[('earlystopping',EarlyStopping())])
+        def typechange(x):
+            return x.astype(dtype = np.float32)
+        typetransform = FunctionTransformer(typechange)
+
+        pipe = Pipeline([("tfidf_vector_com", TfidfVectorizer(tokenizer=identity_tokenizer, input="array", lowercase=False, norm="l2", max_features=None, sublinear_tf=True,token_pattern=r'[^\s]+')), ("typetransform", typetransform), ("net", net)])
+
+
+        pipe.fit(X=x_train, y=y_train2)
+
+
+        y_pred2 = pipe.predict(x_train)
+        rmse = mean_squared_error(y_train2, y_pred2, squared = False)
+        print('Training RMSE:', rmse)
+        rmselist_train.append(rmse)
+
+        y_pred = pipe.predict(x_test)
+        rmse = mean_squared_error(y_test2, y_pred, squared = False)
+        print('Test RMSE:', rmse)
+        rmselist_test.append(rmse)
+
+        y_pred = pipe.predict(x_holdout)
+        rmse = mean_squared_error(y_holdout2, y_pred, squared = False)
+        print('Holdout RMSE:', rmse)
+        rmselist_holdout.append(rmse)
+
+        print()

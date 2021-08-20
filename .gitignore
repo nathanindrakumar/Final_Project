@@ -154,3 +154,17 @@ mergedfullwithmoredates.csv
 aapl_holdout.csv
 mergedfullholdout.csv
 twitter_aapl_holdout.json
+X.txt
+X_ah.txt
+x_holdout.txt
+x_test_ah.txt
+x_train_ah.txt
+y.csv
+y_holdout.txt
+y_holdout_dates.txt
+y_test_ah.csv
+y_testdates.txt
+y_train_ah.csv
+y_testdates.txt
+y_traindates.txt
+y_testdates.txt
