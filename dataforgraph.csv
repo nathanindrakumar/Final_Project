@@ -1,0 +1,181 @@
+Language,RMSE,Day,Model
+All Languages,11.94,Same Day,MLP
+All Languages,1.461,1,MLP
+All Languages,1.41,2,MLP
+All Languages,1.66,3,MLP
+All Languages,1.606,4,MLP
+All Languages,1.655,5,MLP
+English,11.96,Same Day,MLP
+English,1.478,1,MLP
+English,1.432,2,MLP
+English,1.703,3,MLP
+English,1.623,4,MLP
+English,1.68,5,MLP
+Japanese,12.05,Same Day,MLP
+Japanese,1.648,1,MLP
+Japanese,1.778,2,MLP
+Japanese,1.598,3,MLP
+Japanese,1.732,4,MLP
+Japanese,1.64,5,MLP
+Korean,12.07,Same Day,MLP
+Korean,1.782,1,MLP
+Korean,1.407,2,MLP
+Korean,1.784,3,MLP
+Korean,1.695,4,MLP
+Korean,1.698,5,MLP
+Spanish,11.93,Same Day,MLP
+Spanish,1.487,1,MLP
+Spanish,1.415,2,MLP
+Spanish,1.533,3,MLP
+Spanish,1.577,4,MLP
+Spanish,1.661,5,MLP
+French,11.94,Same Day,MLP
+French,1.529,1,MLP
+French,1.323,2,MLP
+French,1.528,3,MLP
+French,1.578,4,MLP
+French,1.753,5,MLP
+All Languages,11.94,Same Day,Multiple Regression
+All Languages,1.412,1,Multiple Regression
+All Languages,1.392,2,Multiple Regression
+All Languages,1.605,3,Multiple Regression
+All Languages,1.572,4,Multiple Regression
+All Languages,1.638,5,Multiple Regression
+English,12.1,Same Day,Multiple Regression
+English,2.27,1,Multiple Regression
+English,2.478,2,Multiple Regression
+English,2.619,3,Multiple Regression
+English,2.304,4,Multiple Regression
+English,2.653,5,Multiple Regression
+Japanese,1773,Same Day,Multiple Regression
+Japanese,6483,1,Multiple Regression
+Japanese,6157,2,Multiple Regression
+Japanese,7814,3,Multiple Regression
+Japanese,3631,4,Multiple Regression
+Japanese,12300,5,Multiple Regression
+Korean,12.22,Same Day,Multiple Regression
+Korean,2.729,1,Multiple Regression
+Korean,1.678,2,Multiple Regression
+Korean,2.873,3,Multiple Regression
+Korean,2.283,4,Multiple Regression
+Korean,3.108,5,Multiple Regression
+Spanish,11.97,Same Day,Multiple Regression
+Spanish,21.83,1,Multiple Regression
+Spanish,1.572,2,Multiple Regression
+Spanish,1.782,3,Multiple Regression
+Spanish,1.761,4,Multiple Regression
+Spanish,2.858,5,Multiple Regression
+French,11.94,Same Day,Multiple Regression
+French,1.531,1,Multiple Regression
+French,1.434,2,Multiple Regression
+French,1.708,3,Multiple Regression
+French,1.659,4,Multiple Regression
+French,1.705,5,Multiple Regression
+All Languages,11.94,Same Day,Ridge
+All Languages,1.387,1,Ridge
+All Languages,1.359,2,Ridge
+All Languages,1.58,3,Ridge
+All Languages,1.549,4,Ridge
+All Languages,1.617,5,Ridge
+English,11.94,Same Day,Ridge
+English,1.408,1,Ridge
+English,1.356,2,Ridge
+English,1.572,3,Ridge
+English,1.545,4,Ridge
+English,1.625,5,Ridge
+Japanese,11.99,Same Day,Ridge
+Japanese,1.416,1,Ridge
+Japanese,1.349,2,Ridge
+Japanese,1.62,3,Ridge
+Japanese,1.544,4,Ridge
+Japanese,1.594,5,Ridge
+Korean,12.13,Same Day,Ridge
+Korean,2.019,1,Ridge
+Korean,1.391,2,Ridge
+Korean,2.21,3,Ridge
+Korean,1.922,4,Ridge
+Korean,1.961,5,Ridge
+Spanish,11.93,Same Day,Ridge
+Spanish,1.409,1,Ridge
+Spanish,1.45,2,Ridge
+Spanish,1.594,3,Ridge
+Spanish,1.507,4,Ridge
+Spanish,1.528,5,Ridge
+French,11.92,Same Day,Ridge
+French,1.426,1,Ridge
+French,1.353,2,Ridge
+French,1.642,3,Ridge
+French,1.56,4,Ridge
+French,1.611,5,Ridge
+All Languages,11.94,Same Day,Lasso
+All Languages,1.373,1,Lasso
+All Languages,1.337,2,Lasso
+All Languages,1.56,3,Lasso
+All Languages,1.517,4,Lasso
+All Languages,1.604,5,Lasso
+English,11.94,Same Day,Lasso
+English,1.368,1,Lasso
+English,1.336,2,Lasso
+English,1.561,3,Lasso
+English,1.508,4,Lasso
+English,1.608,5,Lasso
+Japanese,11.98,Same Day,Lasso
+Japanese,1.369,1,Lasso
+Japanese,1.311,2,Lasso
+Japanese,1.533,3,Lasso
+Japanese,1.515,4,Lasso
+Japanese,1.615,5,Lasso
+Korean,12.03,Same Day,Lasso
+Korean,1.702,1,Lasso
+Korean,1.482,2,Lasso
+Korean,1.684,3,Lasso
+Korean,1.667,4,Lasso
+Korean,1.611,5,Lasso
+Spanish,11.93,Same Day,Lasso
+Spanish,1.389,1,Lasso
+Spanish,1.351,2,Lasso
+Spanish,1.582,3,Lasso
+Spanish,1.501,4,Lasso
+Spanish,1.5,5,Lasso
+French,11.93,Same Day,Lasso
+French,1.422,1,Lasso
+French,1.32,2,Lasso
+French,1.624,3,Lasso
+French,1.552,4,Lasso
+French,1.612,5,Lasso
+All Languages,11.94,Same Day,Elastic Net
+All Languages,1.373,1,Elastic Net
+All Languages,1.337,2,Elastic Net
+All Languages,1.561,3,Elastic Net
+All Languages,1.512,4,Elastic Net
+All Languages,1.603,5,Elastic Net
+English,11.94,Same Day,Elastic Net
+English,1.369,1,Elastic Net
+English,1.336,2,Elastic Net
+English,1.562,3,Elastic Net
+English,1.507,4,Elastic Net
+English,1.6,5,Elastic Net
+Japanese,11.98,Same Day,Elastic Net
+Japanese,1.37,1,Elastic Net
+Japanese,1.307,2,Elastic Net
+Japanese,1.538,3,Elastic Net
+Japanese,1.52,4,Elastic Net
+Japanese,1.619,5,Elastic Net
+Korean,12.02,Same Day,Elastic Net
+Korean,1.618,1,Elastic Net
+Korean,1.429,2,Elastic Net
+Korean,1.718,3,Elastic Net
+Korean,1.716,4,Elastic Net
+Korean,1.489,5,Elastic Net
+Spanish,11.93,Same Day,Elastic Net
+Spanish,1.386,1,Elastic Net
+Spanish,1.347,2,Elastic Net
+Spanish,1.582,3,Elastic Net
+Spanish,1.499,4,Elastic Net
+Spanish,1.496,5,Elastic Net
+French,11.94,Same Day,Elastic Net
+French,1.422,1,Elastic Net
+French,1.314,2,Elastic Net
+French,1.623,3,Elastic Net
+French,1.548,4,Elastic Net
+French,1.611,5,Elastic Net
