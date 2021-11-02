@@ -1,0 +1,3 @@
+Data Sampling Experiment - 24.10.21
+
+Random state 0 has good performance, at profitability of 204% for test set period and 48% for holdout set period.
